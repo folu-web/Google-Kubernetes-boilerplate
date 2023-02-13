@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t frontend .'
+                sh 'sudo docker build -t frontend .'
             }
         }
         
         stage('Test') {
             steps {
-                sh 'docker run -d -p frontend frontend'
+                sh 'sudo docker run -d -p frontend frontend'
             }
         }
         
