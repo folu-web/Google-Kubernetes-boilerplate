@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker --version'
-                sh 'sudo docker build -t adservice .'
+                sh 'sudo docker build . -f Dockerfile -t  adservice'
                 sh 'docker images'
                 
             }
