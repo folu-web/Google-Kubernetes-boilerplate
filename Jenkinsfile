@@ -15,7 +15,8 @@ pipeline {
                 sh 'docker --version'
                 sh 'df -h'
                 sh 'cd app/adservice'
-                sh 'sudo docker build -t app/adservice .'
+                sh 'pwd'
+                sh 'sudo docker build app/adservice .'
                
             }
         }
