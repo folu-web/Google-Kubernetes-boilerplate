@@ -10,14 +10,16 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+                sh 'docker --version'
                 sh 'sudo docker build -t frontend .'
                 sh 'sudo docker images'
+                
             }
         }
         
         stage('Test') {
             steps {
-                sh 'sudo docker run --name frontend -d -p 7700:4000 frontend'
+                sh 'sudo docker run --name frontend -d -p 7700:8080 frontend'
             }
         }
         
