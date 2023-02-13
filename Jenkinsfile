@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'sudo docker build -t frontend .'
-                sh 'docker images'
+                sh 'sudo docker images'
             }
         }
         
