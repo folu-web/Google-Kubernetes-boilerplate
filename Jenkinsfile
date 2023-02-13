@@ -16,7 +16,7 @@ pipeline {
                 sh "curl ifconfig.co"
                 sh "echo testing"
               sh "docker --version"
-              sh "docker ps"
+              sh "sudo docker ps"
             }
         }
       
