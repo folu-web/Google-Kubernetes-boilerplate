@@ -15,9 +15,7 @@ pipeline {
                 sh 'docker --version'
                 sh 'cd app/adservice'
                 sh 'sudo docker build -t adservice .'
-                sh 'ls'
-                sh 'docker images'
-                
+               
             }
         }
         
