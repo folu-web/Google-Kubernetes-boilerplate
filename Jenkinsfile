@@ -13,6 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker --version'
+                sh 'df -h'
                 sh 'cd app/adservice'
                 sh 'sudo docker build -t app/adservice .'
                
