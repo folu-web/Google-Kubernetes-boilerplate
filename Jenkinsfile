@@ -4,7 +4,7 @@ pipeline {
     CLUSTER_NAME = 'bootcamp'
     SERVICE_NAME = 'frontend'
     IMAGE_TAG = 'v1'
-    K8S_NAMESPACE = 'dev'
+    K8S_NAMESPACE = 'dev-env'
   }
     stages {
       stage("environment preparation"){
