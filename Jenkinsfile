@@ -7,7 +7,7 @@ pipeline {
                 sh 'mkdir bootcamp'
                 sh 'cd bootcamp'
                 // Get some code from a GitHub repository
-                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git .'
+                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
                 sh 'pwd'
             }
         }
