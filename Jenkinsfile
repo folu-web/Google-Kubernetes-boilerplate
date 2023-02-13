@@ -13,7 +13,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh 'docker --version'
-                sh 'cd Google-Kubernetes-boilerplate'
+                sh 'cd app/adservice'
                 sh 'sudo docker build -t adservice .'
                 sh 'ls'
                 sh 'docker images'
