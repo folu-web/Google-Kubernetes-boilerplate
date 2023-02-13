@@ -2,6 +2,12 @@ pipeline {
     agent any
     
     stages {
+        stage('Gitclone') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh 'sudo docker build -t frontend .'
@@ -10,7 +16,7 @@ pipeline {
         
         stage('Test') {
             steps {
-                sh 'sudo docker run -d -p frontend frontend'
+                sh 'sudo docker run --name frontend -d -p 7700:4000 frontend'
             }
         }
         
