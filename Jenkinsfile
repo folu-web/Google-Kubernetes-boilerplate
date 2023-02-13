@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Gitclone') {
             steps {
-                sh 'mkdir bootcamp2'
-                sh 'cd bootcamp2'
+                sh 'mkdir bootcamp3'
+                sh 'cd bootcamp3'
                 // Get some code from a GitHub repository
                 git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
                 sh 'pwd'
