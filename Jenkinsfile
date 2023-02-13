@@ -7,6 +7,7 @@ pipeline {
                 // Get some code from a GitHub repository
                 git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
                 sh 'pwd'
+                sh 'ls'
             }
         }
         stage('Build Docker Image') {
