@@ -7,6 +7,16 @@ pipeline {
     K8S_NAMESPACE = 'production'
   }
     stages {
+      stage("environment preparation"){
+            steps {
+                sh "pwd"
+                sh "ls"
+                sh "echo ${USER}"
+                sh "df -h"
+                sh "curl ifconfig.co"
+                sh "echo testing"
+            }
+        }
       
       
     stage('Build and Push Docker Image') {
