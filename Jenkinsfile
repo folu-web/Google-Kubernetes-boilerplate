@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'docker --version'
                 sh 'sudo docker build -t frontend .'
-                sh 'sudo docker images'
+                sh 'docker images'
                 
             }
         }
