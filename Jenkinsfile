@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools {
-    docker 'Docker version 23.0.1'
-    }
+    
     
     stages {
         stage('Gitclone') {
