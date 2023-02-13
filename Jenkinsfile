@@ -23,7 +23,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 sh 'docker login -u folumii -p dckr_pat_3htEwdzErAa3N4Doxkyo_XcBx6k'
-                sh 'docker push frontend'
+                sh 'docker push frontend2'
             }
         }
         
