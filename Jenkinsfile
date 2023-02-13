@@ -14,7 +14,7 @@ pipeline {
             steps {
                 sh 'docker --version'
                 sh 'cd app/adservice'
-                sh 'sudo docker build -t app\adservice .'
+                sh 'sudo docker build -t app/adservice .'
                
             }
         }
