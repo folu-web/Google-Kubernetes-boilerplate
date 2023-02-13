@@ -4,14 +4,17 @@ pipeline {
     stages {
         stage('Gitclone') {
             steps {
+                sh 'mkdir bootcamp'
+                sh 'cd bootcamp'
                 // Get some code from a GitHub repository
-                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
+                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git .'
+                sh 'pwd'
             }
         }
         stage('Build Docker Image') {
             steps {
                 sh 'docker --version'
-                sh 'pwd'
+                sh 'cd /app/adservice'
                 sh 'sudo docker build -t adservice .'
                 sh 'ls'
                 sh 'docker images'
