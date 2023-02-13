@@ -1,43 +1,30 @@
 pipeline {
-  agent any
-  environment {
-    CLUSTER_NAME = 'bootcamp'
-    SERVICE_NAME = 'frontend'
-    IMAGE_TAG = 'v1'
-    K8S_NAMESPACE = 'dev'
-  }
+    agent any
+    
     stages {
-      stage("environment preparation"){
+        stage('Build Docker Image') {
             steps {
-                sh "pwd"
-                sh "ls"
-                sh "echo ${USER}"
-                sh "df -h"
-                sh "curl ifconfig.co"
-                sh "echo testing"
-              sh "docker --version"
-              sh "sudo docker ps"
+                sh 'docker build -t frontend .'
             }
         }
-      
-      
-    stage('Build and Push Docker Image') {
-      steps {
-        sh 'docker build -t frontend:$IMAGE_TAG .'
-        sh 'docker push frontend:$IMAGE_TAG'
-      }
-    }
-    stage('Deploy to EKS') {
-      steps {
-        withCredentials([aws(credentialsId: 'aws-credentials', region: 'ca-central-1')]) {
-          sh '''
-          set -e
-          eval $(aws eks update-kubeconfig --name $CLUSTER_NAME)
-          kubectl config use-context $CLUSTER_NAME
-          kubectl -n $K8S_NAMESPACE set image deployment/$SERVICE_NAME $SERVICE_NAME=frontend:$IMAGE_TAG
-          '''
+        
+        stage('Test') {
+            steps {
+                sh 'docker run -d -p frontend frontend'
+            }
         }
-      }
+        
+        stage('Push to Docker Hub') {
+            steps {
+                sh 'docker login -u folumii -p dckr_pat_3htEwdzErAa3N4Doxkyo_XcBx6k'
+                sh 'docker push frontend'
+            }
+        }
+        
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f <kubernetes-manifest-file>.yml'
+            }
+        }
     }
-  }
 }
