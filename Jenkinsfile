@@ -17,7 +17,7 @@ pipeline {
                 sh 'df -h'
                 sh 'cd app/adservice'
                 sh 'pwd'
-                sh 'sudo docker build .'
+                sh 'sudo docker build -t Google-Kubernetes-boilerplate/app/adservice .'
                
             }
         }
