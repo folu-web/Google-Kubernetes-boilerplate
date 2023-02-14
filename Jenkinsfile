@@ -6,7 +6,7 @@ pipeline {
         stage('Gitclone') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/Google-Kubernetes-boilerplate.git'
+                git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/google-Kubernetes-boilerplate.git'
                 sh 'pwd'
                 sh 'ls -la'
             }
@@ -17,7 +17,7 @@ pipeline {
                 sh 'df -h'
                 sh 'cd app/adservice'
                 sh 'pwd'
-                sh 'sudo docker build -t Google-Kubernetes-boilerplate/app/adservice .'
+                sh 'sudo docker build -t google-Kubernetes-boilerplate/app/adservice .'
                
             }
         }
