@@ -3,8 +3,8 @@ pipeline {
   stages {
      stage ('Testing') {
        steps {
-           git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/Delali97/Google-Kubernetes-boilerplate.git'
-           //sh ''' cd app/adservice
+           git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/google-Kubernetes-boilerplate.git'
+           //sh ''' cd app/frontend
                    ls
                    sudo docker --version
                    sudo docker build -t folumii/frontend .
