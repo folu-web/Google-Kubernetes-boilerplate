@@ -8,7 +8,7 @@ pipeline {
                    ls
                    sudo docker --version
                    sudo docker build -t folumii/frontend .
-                   sudo docker push folumii/frontend
+                   sudo docker push folumii/frontend:latest
                    '''
        }
      }
