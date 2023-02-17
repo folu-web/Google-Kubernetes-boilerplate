@@ -4,7 +4,7 @@ pipeline {
      stage ('Testing') {
        steps {
            git branch: 'main', credentialsId: 'for-git', url: 'https://github.com/folu-web/google-Kubernetes-boilerplate.git'
-           //sh ''' cd app/frontend
+           sh ''' cd app/frontend
                    ls -la
                    sudo docker --version
                    sudo docker build -t folumii/frontend .
