@@ -7,7 +7,7 @@ pipeline {
           sh ''' sudo docker system prune -af
                   '''
            sh ''' cd app/adservice
-                   ls
+                   ls -la
                    sudo docker --version
                    sudo docker build -t folumii/adservice .
                    sudo docker push folumii/adservice
