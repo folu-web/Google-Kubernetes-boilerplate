@@ -9,7 +9,8 @@ pipeline {
            sh ''' cd app/adservice
                    ls -la
                    sudo docker --version
-                   sudo docker build -t folumii/adservice .
+                   sudo docker build -t folumii/adservice 
+                   sudo docker login -u folumii -p dckr_pat_3htEwdzErAa3N4Doxkyo_XcBx6k
                    sudo docker push folumii/adservice
                    '''
          sh ''' sudo docker system prune -af
