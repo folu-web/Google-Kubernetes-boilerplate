@@ -89,19 +89,19 @@ pipeline {
         
       }
     }
-//     stage ('Create Deploy to Yaml file') {
-//       steps {
-//           withCredentials([aws(credentialsId: 'aws-credentials', region: 'us-east-2')]) {
-//           sh 'kubectl version --client --output=yaml'
-//           sh '''
-//                 aws eks update-kubeconfig --name bootcampdemo
-//                 kubectl config current-context
-//                 kubectl config use-context arn:aws:eks:us-east-2:842423002160:cluster/bootcampdemo
-//                 kubectl apply -f testing.yaml
-//                 kubectl get service
-//                 '''
-//           }
-//         }
-//       }
+     stage ('Create Deploy to Yaml file') {
+       steps {
+           withCredentials([aws(credentialsId: 'aws-credentials', region: 'ca-central-1')]) {
+           sh 'kubectl version --client --output=yaml'
+           sh '''
+                 aws eks update-kubeconfig --name bootdemo
+                 kubectl config current-context
+                 kubectl config use-context arn:aws:eks:ca-central-1:487585538889:cluster/bootdemo
+                 kubectl apply -f testing.yaml
+                 kubectl get service
+                 '''
+           }
+         }
+       }
   }
 }
