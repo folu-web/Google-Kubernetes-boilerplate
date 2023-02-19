@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: adservice
-        image: delalixx/adservice:latest
+        image: folumii/adservice:latest
         ports:
         - containerPort: 9555
         env:
@@ -42,8 +42,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 5050
-    targetPort: 5050
+  - port: 80
+    targetPort: 8080
   selector:
     app: frontend
 ---
@@ -62,10 +62,10 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: adservice
-        image: delalixx/frontend:latest
+      - name: frontend
+        image: folumii/frontend:latest
         ports:
-        - containerPort: 5050
+        - containerPort: 8080
         env:
         - name: MESSAGE
           value: Hello from my first microservices front end deployment!
@@ -79,8 +79,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 2020
-    targetPort: 2020
+  - port: 7070
+    targetPort: 7070
   selector:
     app: cartservice
 ---
@@ -100,9 +100,9 @@ spec:
     spec:
       containers:
       - name: adservice
-        image: delalixx/cartservice:latest
+        image: folumii/cartservice:latest
         ports:
-        - containerPort: 5050
+        - containerPort: 7070
         env:
         - name: MESSAGE
           value: Hello from my first microservices front end deployment!    
