@@ -14,8 +14,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: adservice
+  labels:
+    app: adservice
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: adservice
@@ -25,6 +27,7 @@ spec:
         app: adservice
     spec:
       containers:
+      - name: adservice
         image: folumii/adservice:latest
         ports:
         - containerPort: 9555
@@ -133,10 +136,11 @@ spec:
         app: checkoutservice
     spec:
       containers:
-          image: folumii/checkoutservice:latest
-          ports:
-          - containerPort: 5050
-          env:
+      - name: adservice
+        image: folumii/checkoutservice:latest
+        ports:
+        - containerPort: 5050
+        env:
           - name: PORT
             value: "5050"
           - name: PRODUCT_CATALOG_SERVICE_ADDR
@@ -151,7 +155,7 @@ spec:
             value: "currencyservice:7000"
           - name: CART_SERVICE_ADDR
             value: "cartservice:7070"
-        
+          
 ---
 #### END of CHECKOUTERVICE ###
 ---
