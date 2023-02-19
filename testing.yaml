@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: adservice
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
   - port: 9555
     targetPort: 9555
@@ -99,7 +99,7 @@ spec:
         app: cartservice
     spec:
       containers:
-      - name: adservice
+      - name: cartservice
         image: folumii/cartservice:latest
         ports:
         - containerPort: 7070
@@ -109,3 +109,151 @@ spec:
           
  #### END of CARTSERVICE ###
 #------------------------------------------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: checkoutservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5050
+    targetPort: 5050
+  selector:
+    app: checkoutservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: checkoutservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: checkoutservice
+  template:
+    metadata:
+      labels:
+        app: checkoutservice
+    spec:
+      containers:
+      - name: checkoutservice
+        image: folumii/checkoutservice:latest
+        ports:
+        - containerPort: 5050
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of checkoutservice ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: currencyservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 7000
+    targetPort: 7000
+  selector:
+    app: currencyservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currencyservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currencyservice
+  template:
+    metadata:
+      labels:
+        app: currencyservice
+    spec:
+      containers:
+      - name: currencyservice
+        image: folumii/currencyservice:latest
+        ports:
+        - containerPort: 7000
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of currencyservice ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: emailservice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+    targetPort: 8080
+  selector:
+    app: emailservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emailservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emailservice
+  template:
+    metadata:
+      labels:
+        app: emailservice
+    spec:
+      containers:
+      - name: emailservice
+        image: folumii/emailservice:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of emailservice ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: loadgenerator
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: loadgenerator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loadgenerator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loadgenerator
+  template:
+    metadata:
+      labels:
+        app: loadgenerator
+    spec:
+      containers:
+      - name: loadgenerator
+        image: folumii/loadgenerator:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of loadgenerator ###
+#---------------------------------------
