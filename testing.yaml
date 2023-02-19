@@ -15,7 +15,7 @@ kind: Deployment
 metadata:
   name: adservice
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: adservice
@@ -25,7 +25,6 @@ spec:
         app: adservice
     spec:
       containers:
-      - name: adservice
         image: folumii/adservice:latest
         ports:
         - containerPort: 9555
