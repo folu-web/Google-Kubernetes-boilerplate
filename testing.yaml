@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: adservice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 9555
     targetPort: 9555
@@ -114,7 +114,7 @@ kind: Service
 metadata:
   name: checkoutservice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 5050
     targetPort: 5050
@@ -151,7 +151,7 @@ kind: Service
 metadata:
   name: currencyservice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 7000
     targetPort: 7000
@@ -188,7 +188,7 @@ kind: Service
 metadata:
   name: emailservice
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - port: 5000
     targetPort: 8080
@@ -256,4 +256,192 @@ spec:
           value: Hello from my first microservices front end deployment!
           
 #### END of loadgenerator ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: paymentservice
+spec:
+  type: ClusterIP
+  ports:
+  - port: 50051
+    targetPort: 50051
+  selector:
+    app: paymentservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paymentservice
+  template:
+    metadata:
+      labels:
+        app: paymentservice
+    spec:
+      containers:
+      - name: paymentservice
+        image: folumii/paymentservice:latest
+        ports:
+        - containerPort: 50051
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of paymentservice ###
+#---------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cart
+spec:
+  selector:
+    matchLabels:
+      app: redis-cart
+  template:
+    metadata:
+      labels:
+        app: redis-cart
+    spec:
+      containers:
+      - name: redis
+        image: redis:alpine
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - mountPath: /data
+          name: redis-data
+      volumes:
+      - name: redis-data
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-cart
+spec:
+  type: ClusterIP
+  selector:
+    app: redis-cart
+  ports:
+  - name: tcp-redis
+    port: 6379
+    targetPort: 6379
+---
+#### END of REDISDB ###
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: productcatalogservice
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3550
+    targetPort: 3550
+  selector:
+    app: productcatalogservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  template:
+    metadata:
+      labels:
+        app: productcatalogservice
+    spec:
+      containers:
+      - name: productcatalogservice
+        image: folumii/productcatalogservice:latest
+        ports:
+        - containerPort: 3550
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of productcatalogservice ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: recommendationservice
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: recommendationservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: recommendationservice
+  template:
+    metadata:
+      labels:
+        app: recommendationservice
+    spec:
+      containers:
+      - name: recommendationservice
+        image: folumii/recommendationservice:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of recommendationservice ###
+#---------------------------------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: shippingservice
+spec:
+  type: ClusterIP
+  ports:
+  - port: 50051
+    targetPort: 50051
+  selector:
+    app: shippingservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shippingservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shippingservice
+  template:
+    metadata:
+      labels:
+        app: shippingservice
+    spec:
+      containers:
+      - name: shippingservice
+        image: folumii/shippingservice:latest
+        ports:
+        - containerPort: 50051
+        env:
+        - name: MESSAGE
+          value: Hello from my first microservices front end deployment!
+          
+#### END of shippingservice ###
 #---------------------------------------
