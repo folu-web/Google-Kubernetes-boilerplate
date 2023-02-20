@@ -7,7 +7,7 @@ pipeline {
           sh ''' sudo docker system prune -af
                   '''
            sh ''' cd app/adservice
-                   ls -la
+                   ls
                    sudo docker --version
                    sudo docker build -t folumii/adservice .
                    sudo docker login -u folumii -p dckr_pat_3htEwdzErAa3N4Doxkyo_XcBx6k
