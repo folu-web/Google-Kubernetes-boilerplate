@@ -47,7 +47,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/emailservice:latest
+        image: folumii/emailservice:latest
         ports:
         - containerPort: 8080
         env:
@@ -112,7 +112,7 @@ spec:
                 - all
             privileged: false
             readOnlyRootFilesystem: true
-          image: delalixx/checkoutservice:latest
+          image: folumii/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -186,7 +186,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/recommendationservice:latest
+        image: folumii/recommendationservice:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -255,7 +255,7 @@ spec:
                 - all
             privileged: false
             readOnlyRootFilesystem: true
-          image: delalixx/frontend:latest
+          image: folumii/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -362,7 +362,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/paymentservice:latest
+        image: folumii/paymentservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -426,7 +426,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/productcatalogservice:latest
+        image: folumii/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
@@ -490,7 +490,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/cartservice:latest
+        image: folumii/cartservice:latest
         ports:
         - containerPort: 7070
         env:
@@ -582,7 +582,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/loadgenerator:latest
+        image: folumii/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -625,7 +625,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/currencyservice:latest
+        image: folumii/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000
@@ -689,7 +689,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/shippingservice:latest
+        image: folumii/shippingservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -819,7 +819,7 @@ spec:
               - all
           privileged: false
           readOnlyRootFilesystem: true
-        image: delalixx/adservice:latest
+        image: folumii/adservice:latest
         ports:
         - containerPort: 9555
         env:
